@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en"xmlns:th="http//www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    
+    <title>[[${pageTitle}]]</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}"/>
+</head>
+
+<body>
+
+<div class="container-fluid text-center">
+<h1>Usuários</h1>
+<a class="h2" th:href="@{/users}">[[${pageTitle}]]</a>
+</div>
+
+<div th:if="${message}" class="alert alert-warning w-25 float-right p-3" role="alert">
+[[${message}]]
+</div>
+
+<div class="m-2 text-left ">
+<a class="btn btn-primary"  role="button" th:href="@{/users/new}">Adicionar</a>
+</div>
+
+<div>
+
+<table class="table table-bordered">
+
+<thead class="thead-dark">
+
+<tr>
+<th>Id</th>
+<th>E-mail</th>
+<th>First Name</th>
+<th>Last Name</th>
+<th>Enabled</th>
+<th>Action</th>
+</tr>
+
+</thead>
+
+<tbody>
+
+<th:block th:each="user:${ListUsers}">
+<tr>
+<td>[[${user.id}]]</td>
+<td>[[${user.email}]]</td>
+<td>[[${user.firstName}]]</td>
+<td>[[${user.lastName}]]</td>
+<td>[[${user.enabled}]]</td>
+
+<td>
+<a class="h4 mr-3" th:href="@{'/users/edit/' + ${user.id}}">Edit</a>
+<a class="h4" th:href="@{'/users/delete/' + ${user.id}}">Delete</a>
+</td>
+</tr>
+</th:block>
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</body>
+
+</html>
